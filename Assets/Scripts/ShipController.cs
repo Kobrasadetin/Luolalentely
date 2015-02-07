@@ -125,6 +125,23 @@ public class ShipController : MonoBehaviour
 			*/
 		}
 	}
+
+	void OnPhotonSerializeView( PhotonStream stream, PhotonMessageInfo info )
+	{
+		if( stream.isWriting == true )
+		{
+
+				stream.SendNext (engineActive);
+
+
+		}
+		else
+		{
+
+			this.engineActive = (bool)stream.ReceiveNext();
+
+		}
+	}
 		/*
 	void handleSounds ()
 	{
